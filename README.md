@@ -2,19 +2,20 @@
 big vader box bot
 
 READ:
-To locate code navigate to 2019Cratebot/src/main/java/frc/robot
 
-Commands and auto commands are in the command folder
+-To locate code navigate to 2019Cratebot/src/main/java/frc/robot
 
-Subsystems to control parts of the robot are in the subystems folder
+-Commands and auto commands are in the command folder
 
-Controls.java folder tells the motors how to behave, and values for xbox controller
+-Subsystems to control parts of the robot are in the subystems folder
 
-IO.java holds port values on the breadboard
+-Controls.java folder tells the motors how to behave, and values for xbox controller
 
-Robot.java reads pot values, instantiates subystems, and runs periodic instances
+-IO.java holds port values on the breadboard
+
+-Robot.java reads pot values, instantiates subystems, and runs periodic instances
 
 ---------------------------------------------------------------------------------------
 
-Gripper Grip is claw
-Gripper Rotate is arm
+-Gripper Grip is claw
+-Gripper Rotate is arm
