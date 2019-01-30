@@ -8,7 +8,7 @@ public class CrossAutoLine extends CommandGroup{
 
     public CrossAutoLine(Robot robot){
         //addSequential(new DriveDistanceStraightCommand(robot, 0.5, 121));
-        addSequential(new DriveStraightCommand(robot,0.5), 4.75);
+        addSequential(new DriveStraightCommand(robot,0.5), 4.5);
     }
 }
 

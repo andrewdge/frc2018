@@ -15,8 +15,14 @@ public class DefaultGripperRotateCommand extends Command {
 
   protected void execute() {
     if(robot.isOperatorControl()){
-      if(Controls.gripperRotatePositionControl() > 0) robot.gripperRotateSubsystem.setTargetPositionRelative(20);
-      else if(Controls.gripperRotatePositionControl() < 0) robot.gripperRotateSubsystem.setTargetPositionRelative(-20);
+      if(Controls.gripperRotatePositionControl() > 0){
+        //robot.gripperRotateSubsystem.setP(0.000002);
+        robot.gripperRotateSubsystem.setTargetPositionRelative(15);//20
+      }
+      else if(Controls.gripperRotatePositionControl() < 0){
+        //robot.gripperRotateSubsystem.setP(0.000001);
+        robot.gripperRotateSubsystem.setTargetPositionRelative(-15);//-20
+      }
     }else{
       robot.gripperRotateSubsystem.stopMotors();
       

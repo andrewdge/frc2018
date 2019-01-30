@@ -13,12 +13,14 @@ public class GripperRotateSubsystem extends PIDSubsystem {
   private Robot robot;
 
   //IO
-  private Spark motor = new Spark(IO.motorGrippperRotate);
+  public Spark motor = new Spark(IO.motorGrippperRotate);
   private AnalogInput potentiometer = new AnalogInput(IO.potentiometerGripperRotate);
 
   public GripperRotateSubsystem(Robot robotInstance) {
-    //super(0.0008,0,0);
-    super(robotInstance.preferences.getDouble("kPGripperRotate", 0.0008), robotInstance.preferences.getDouble("kIGripperRotate", 0.0005), robotInstance.preferences.getDouble("kDGripperRotate", 0.0001));
+    super(0.0008,0,0);
+
+    //control swing of arm
+    //super(robotInstance.preferences.getDouble("kPGripperRotate", 0.0001), robotInstance.preferences.getDouble("kIGripperRotate", 0.000), robotInstance.preferences.getDouble("kDGripperRotate", 0.0));
 
     robot = robotInstance;
 
@@ -50,15 +52,17 @@ public class GripperRotateSubsystem extends PIDSubsystem {
     setSetpoint(getPotentiometerValue());
   }
   
+  
   public void setSpeed(double speed){
-    if(speed > 0.0){ //open
+    
+    if(speed > 0.0){ 
       if(getPotentiometerValue() < robot.preferences.getInt("limitGripperGripOpen", 4000)){
         motor.set(speed);
       }else{
         motor.stopMotor();
       }
-    }else if(speed < 0.0){ //close
-      if(getPotentiometerValue() > robot.preferences.getInt("limitGripperGripClosed", 320)){
+    }else if(speed < 0.0){ 
+      if(getPotentiometerValue() > robot.preferences.getInt("limitGripperGripClosed", 6)){
         motor.set(speed);
       }else{
         motor.stopMotor();
@@ -67,6 +71,7 @@ public class GripperRotateSubsystem extends PIDSubsystem {
       motor.stopMotor();
     }
   }
+  
 
   public void stopMotors(){
     motor.stopMotor();
@@ -99,17 +104,17 @@ public class GripperRotateSubsystem extends PIDSubsystem {
   // Set PID Constants
 	public void setP(double kP){
 		getPIDController().setP(kP);
-		robot.preferences.putDouble("kPGripperRotate", kP);
+		//robot.preferences.putDouble("kPGripperRotate", kP);
 	}
 	public void setI(double kI){
 		getPIDController().setI(kI);
-		robot.preferences.putDouble("kIGripperRotate", kI);
+		//robot.preferences.putDouble("kIGripperRotate", kI);
 	}
 	public void setD(double kD){
 		getPIDController().setD(kD);
-		robot.preferences.putDouble("kDGripperRotate", kD);
+		//robot.preferences.putDouble("kDGripperRotate", kD);
   }
-  
+  /*
   // Convert a percentage of the rotation range to an absolute potentiometer value
 	public int rangePercentageToAbsolute(double percentage){
 		int downLimit = robot.preferences.getInt("limitGripperRotateDown", 4096);
@@ -117,5 +122,5 @@ public class GripperRotateSubsystem extends PIDSubsystem {
 		return (int) Math.round(downLimit + ((upLimit - downLimit) * percentage));
 	}
 
-*/
+  */
 }

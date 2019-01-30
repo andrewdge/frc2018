@@ -19,7 +19,7 @@ public class DriveStraightCommand extends PIDCommand {
   }
 
   public void initialize() {
-    robot.driveSubsystem.gyroZeroYaw();
+    //robot.driveSubsystem.gyroZeroYaw();
     setSetpoint(0.0);
   }
 
@@ -39,7 +39,8 @@ public class DriveStraightCommand extends PIDCommand {
 	}
 	
 	public void usePIDOutput(double output){
-		robot.driveSubsystem.arcadeDrive(speed, output);// Drive using arcade drive at the specified speed and the output of the PID for the angle
+    //robot.driveSubsystem.arcadeDrive(speed, 0.0);// Drive using arcade drive at the specified speed and the output of the PID for the angle
+    robot.driveSubsystem.tankDrive(speed,speed);// Drive using arcade drive at the specified speed and the output of the PID for the angle
   }
   
 }
