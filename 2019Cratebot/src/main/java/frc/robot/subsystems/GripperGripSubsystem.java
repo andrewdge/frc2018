@@ -80,14 +80,15 @@ public class GripperGripSubsystem extends Subsystem {
   */
 
   public void setSpeed(double speed){
+    
     if(speed > 0.0){ //open
-      if(getPotentiometerValue() < robot.preferences.getInt("limitGripperGripOpen", 3046)){
+      if(getPotentiometerValue() < robot.preferences.getInt("limitGripperGripOpen", 3020)){
         motor.set(speed);
       }else{
         motor.stopMotor();
       }
     }else if(speed < 0.0){ //close
-      if(getPotentiometerValue() > robot.preferences.getInt("limitGripperGripClosed", 1850)){
+      if(getPotentiometerValue() > robot.preferences.getInt("limitGripperGripClosed", 2000)){
         motor.set(speed);
       }else{
         motor.stopMotor();
